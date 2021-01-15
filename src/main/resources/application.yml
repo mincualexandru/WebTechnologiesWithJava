@@ -1,0 +1,30 @@
+server:
+  port: 8081
+  tomcat:
+    uri-encoding: utf-8
+
+spring:
+  datasource:
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://${MSSQL_HOST}\${MSSQL_INSTANCE}:${MSSQL_PORT};database=${MSSQL_DB}
+    username: ${MSSQL_USER}
+    password: ${MSSQL_PASSWORD}
+  jpa:
+    database-platform: org.hibernate.dialect.SQLServer2012Dialect
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.StdDateFormat
+    time-zone: Etc/UTC
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
